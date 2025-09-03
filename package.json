@@ -1,0 +1,38 @@
+{
+	"name": "server-actions",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@preact/signals": "^1.2.2",
+		"@prisma/client": "^5.13.0",
+		"axios": "^1.6.2",
+		"bcrypt": "^5.1.1",
+		"eslint": "8.48.0",
+		"eslint-config-next": "^14.0.3",
+		"js-cookie": "^3.0.5",
+		"next": "^14.2.3",
+		"preact": "^10.19.2",
+		"react": "^18.2.0",
+		"react-aria": "^3.30.0",
+		"react-dom": "^18.2.0",
+		"react-stately": "^3.28.0",
+		"sass": "^1.66.1",
+		"typescript": "5.2.2",
+		"unzip": "^0.1.11",
+		"uuid": "^9.0.0"
+	},
+	"devDependencies": {
+		"@types/axios": "^0.14.0",
+		"@types/js-cookie": "^3.0.3",
+		"@types/node": "20.5.9",
+		"@types/react": "18.2.21",
+		"@types/react-dom": "^18.2.17",
+		"prisma": "^5.13.0"
+	}
+}

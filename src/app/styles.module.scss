@@ -1,0 +1,12 @@
+@use '@/styles/colors';
+@use '@/styles/variables';
+
+#wrapper {
+	height: 100%;
+	padding-inline: 15%;
+
+	background-color: colors.$bg-primary;
+
+	#content {
+	}
+}

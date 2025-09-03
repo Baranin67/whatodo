@@ -1,0 +1,20 @@
+@use '../../styles/colors';
+
+#wrapper {
+	display: grid;
+
+	height: 100%;
+	grid-template-columns: 250px 1fr;
+	grid-template-rows: 75px 1fr;
+
+	background-color: colors.$bg-secondary;
+
+	#logo {
+		display: grid;
+		place-items: center;
+	}
+
+	#content {
+		background-color: colors.$bg-primary;
+	}
+}

@@ -1,0 +1,84 @@
+@use 'colors';
+@use 'variables';
+@use 'fonts';
+
+.wrapper {
+	max-width: 300px;
+
+	border: none;
+	outline: transparent;
+
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+	transition-property: background-color, outline-color;
+
+	label {
+		display: block;
+		text-align: center;
+		text-transform: uppercase;
+
+		width: 100%;
+		margin-bottom: 0.2em;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+
+		font-family: fonts.$display;
+		color: rgba(colors.$secondary, 0.6);
+	}
+
+	.input-wrapper {
+		display: flex;
+
+		border-radius: variables.$border-radius-small;
+
+		background-color: rgba(colors.$primary, 0.2);
+		border-bottom: 3px solid colors.$primary;
+		transition: background-color 0.1s ease-in-out;
+
+		&:hover,
+		&:has(input:focus) {
+			background-color: rgba(colors.$primary, 0.3);
+		}
+
+		.icon-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			width: 3rem;
+
+			svg {
+				width: 1em;
+
+				path {
+					fill: colors.$primary;
+				}
+			}
+		}
+
+		input {
+			box-sizing: border-box;
+			text-align: center;
+
+			padding: 1em 0;
+			flex: 1;
+
+			border: none;
+			background-color: transparent;
+			outline: transparent;
+
+			&::placeholder {
+				color: rgba(colors.$secondary, 0.4);
+			}
+		}
+
+		&:not(:has(button)) input {
+			padding-right: 3rem;
+		}
+
+		&:not(:has(.icon-wrapper)) input {
+			padding-left: 3rem;
+		}
+	}
+}

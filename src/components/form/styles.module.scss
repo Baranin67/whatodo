@@ -1,0 +1,51 @@
+@use '../../styles/colors';
+@use '../../styles/variables';
+
+.wrapper {
+	width: fit-content;
+	height: fit-content;
+	padding: 1.5em;
+	border-radius: variables.$border-radius-big;
+
+	background-color: colors.$bg-secondary;
+
+	header {
+		text-align: center;
+		margin-bottom: 1.5rem;
+	}
+
+	form {
+		> *:not(button) {
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		> button {
+			width: 100%;
+			margin-top: 1.5rem;
+		}
+	}
+
+	.extra-buttons {
+		> * {
+			width: 100%;
+			margin-top: 0.5rem;
+
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+	}
+
+	.extra-links {
+		margin-top: 1.5rem;
+
+		> * {
+			display: flex;
+			justify-content: center;
+
+			gap: 0.3rem;
+		}
+	}
+}

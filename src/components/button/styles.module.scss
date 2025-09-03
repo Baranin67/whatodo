@@ -1,0 +1,157 @@
+@use '@/styles/colors';
+@use '@/styles/variables';
+@use '@/styles/fonts';
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	gap: 0.7em;
+	padding: 1em 2em;
+	border-radius: variables.$border-radius-small;
+
+	font-family: fonts.$display;
+	font-weight: 700;
+	border: none;
+	outline: transparent;
+
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+	transition-property: background-color, outline-color, scale, color;
+
+	&:active {
+		scale: 0.95;
+	}
+
+	svg {
+		width: 1em;
+
+		path {
+			transition: fill 0.1s ease-in-out;
+		}
+	}
+
+	&[data-variant='primary'] {
+		&[data-scheme='dark'] {
+			background-color: colors.$primary;
+
+			&:hover,
+			&:focus {
+				background-color: lighten(colors.$primary, 10);
+			}
+
+			svg path {
+				fill: colors.$text-dark;
+			}
+		}
+
+		&[data-scheme='light'] {
+			background-color: colors.$text-dark;
+			color: colors.$primary;
+
+			&:hover,
+			&:focus {
+				background-color: darken(colors.$text-dark, 10);
+			}
+
+			svg path {
+				fill: colors.$primary;
+			}
+		}
+	}
+
+	&[data-variant='outline'] {
+		outline: 3px solid;
+		outline-offset: -3px;
+		background-color: transparent;
+
+		&[data-scheme='dark'] {
+			outline-color: colors.$primary;
+			color: colors.$primary;
+
+			&:hover,
+			&:focus {
+				outline-color: lighten(colors.$primary, 10);
+				color: lighten(colors.$primary, 10);
+				background-color: rgba(colors.$primary, 0.1);
+
+				svg path {
+					fill: lighten(colors.$primary, 10);
+				}
+			}
+
+			svg path {
+				fill: colors.$primary;
+			}
+		}
+
+		&[data-scheme='light'] {
+			outline-color: colors.$text-dark;
+			color: colors.$text-dark;
+
+			&:hover,
+			&:focus {
+				background-color: rgba(colors.$text-dark, 0.2);
+			}
+
+			svg path {
+				fill: colors.$text-dark;
+			}
+		}
+	}
+
+	&[data-variant='ghost'] {
+		background-color: transparent;
+
+		&[data-scheme='dark'] {
+			color: colors.$primary;
+
+			&:hover,
+			&:focus {
+				background-color: rgba(colors.$primary, 0.2);
+				color: lighten(colors.$primary, 10);
+
+				svg path {
+					fill: lighten(colors.$primary, 10);
+				}
+			}
+
+			svg path {
+				fill: colors.$primary;
+			}
+		}
+
+		&[data-scheme='light'] {
+			color: colors.$text-dark;
+
+			&:hover,
+			&:focus {
+				background-color: rgba(colors.$text-dark, 0.2);
+			}
+
+			svg path {
+				fill: colors.$text-dark;
+			}
+		}
+	}
+
+	&[data-variant='input'] {
+		background-color: transparent;
+
+		padding: 0;
+		width: 3rem;
+
+		svg path {
+			fill: rgba(colors.$secondary, 0.6);
+		}
+
+		&:hover,
+		&:focus {
+			svg path {
+				fill: rgba(colors.$secondary, 1);
+			}
+		}
+	}
+}

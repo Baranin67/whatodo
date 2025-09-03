@@ -1,0 +1,30 @@
+@use 'colors';
+@use 'fonts';
+
+* {
+  color:       colors.$text-dark;
+  font-family: fonts.$primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin:      0;
+  font-family: fonts.$display;
+}
+
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    margin: 0;
+
+    #wrapper {
+      display:               grid;
+      height:                100%;
+      background-color:      colors.$bg-primary;
+
+      grid-template-columns: 1fr;
+      grid-auto-rows:        75px 1fr;
+    }
+  }
+}

@@ -1,0 +1,183 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String  @id @unique @default(uuid())
+  name             String  @unique @db.VarChar(20)
+  token            String? @default(uuid())
+  email            String  @unique @db.VarChar(320)
+  password         String  @db.VarChar(255)
+  firstName        String? @db.VarChar(200)
+  lastName         String? @db.VarChar(200)
+  isEmailConfirmed Boolean @default(false)
+  isEmailVisible   Boolean @default(true)
+
+  comments             Comment[]
+  boards               Board[]
+  contributingToBoards BoardContributor[]
+  boardsPermissions    UserBoardPermission[]
+  tasks                Task[]
+  contributingToTasks  TaskContributor[]
+  tasksPermissions     UserTaskPermission[]
+
+  permissions UserPermission[]
+  status      UserStatus
+
+  createdAt   DateTime?     @default(now())
+  updatedAt   DateTime?     @updatedAt
+  logoutAt    DateTime?
+  dateTracker DateTracker[] // stores dates like last success login, failed login or password change etc.
+}
+
+model UserPermission {
+  id   Int            @id @default(autoincrement())
+  type PermissionType
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model DateTracker {
+  id   Int             @id @default(autoincrement())
+  type DateTrackerType
+  date DateTime        @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model Comment {
+  id        String    @id @default(uuid())
+  content   String    @db.Text
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  editedAt  DateTime? // last content modify date
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+model Board {
+  id               String                @id @default(uuid())
+  title            String                @db.VarChar(255)
+  tasks            Task[]
+  contributors     BoardContributor[]
+  usersPermissions UserBoardPermission[]
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
+}
+
+model BoardContributor {
+  id Int @id @default(autoincrement())
+
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  board   Board  @relation(fields: [boardId], references: [id])
+  boardId String
+
+  contributingSince DateTime @default(now())
+}
+
+model UserBoardPermission {
+  id             Int            @id @default(autoincrement())
+  permissionType PermissionType
+
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  board   Board  @relation(fields: [boardId], references: [id])
+  boardId String
+}
+
+model Task {
+  id               String               @id @default(uuid())
+  title            String               @db.VarChar(255)
+  content          String               @db.Text
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  subtasks         Task[]               @relation("subtasks")
+  contributors     TaskContributor[]
+  usersPermissions UserTaskPermission[]
+
+  owner        User    @relation(fields: [ownerId], references: [id])
+  ownerId      String
+  board        Board?  @relation(fields: [boardId], references: [id])
+  boardId      String?
+  parentTask   Task?   @relation("subtasks", fields: [parentTaskId], references: [id])
+  parentTaskId String?
+}
+
+model TaskContributor {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  task   Task   @relation(fields: [taskId], references: [id])
+  taskId String
+
+  contributingSince DateTime @default(now())
+}
+
+model UserTaskPermission {
+  id             Int            @id @default(autoincrement())
+  permissionType PermissionType
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  task   Task   @relation(fields: [taskId], references: [id])
+  taskId String
+}
+
+enum UserStatus {
+  HIDDEN
+  OFFLINE
+  ONLINE
+  DO_NOT_DISTURB
+  BE_RIGHT_BACK
+}
+
+enum DateTrackerType {
+  ACC_LOGIN_SUCCESS
+  ACC_LOGIN_FAIL
+  ACC_MOD_PWD
+  ACC_MOD_OTHER
+}
+
+enum PermissionType {
+  ALL
+
+  USR_ADD
+  USR_MOD
+  USR_GET
+  USR_DEL
+  USR_PERM_ADD
+  USR_PERM_MOD
+  USR_PERM_DEL
+
+  BOARD_ADD
+  BOARD_MOD
+  BOARD_GET
+  BOARD_DEL
+  BOARD_PERM_ADD
+  BOARD_PERM_MOD
+  BOARD_PERM_DEL
+
+  COMMENT_ADD
+  COMMENT_MOD
+  COMMENT_GET
+  COMMENT_DEL
+
+  TASK_ADD
+  TASK_MOD
+  TASK_GET
+  TASK_DEL
+  TASK_PERM_ADD
+  TASK_PERM_MOD
+  TASK_PERM_DEL
+}

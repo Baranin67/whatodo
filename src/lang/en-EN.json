@@ -1,0 +1,43 @@
+{
+	"app": {
+		"name": "Whatodo",
+		"description": "Your task manager"
+	},
+	"pages": {
+		"home": {
+			"navBtnRegister": "Register",
+			"navBtnLogIn": "Log in",
+			"navBtnDashboard": "Dashboard",
+			"navBtnHomePage": "Homepage"
+		}
+	},
+	"common": {
+		"ok": "OK",
+		"cancel": "Cancel",
+		"save": "Save",
+		"delete": "Delete",
+		"edit": "Edit",
+		"add": "Add",
+		"create": "Create",
+		"close": "Close",
+		"yes": "Yes",
+		"no": "No"
+	},
+	"user": {
+		"firstName": "First name",
+		"lastName": "Last name",
+		"username": "Username",
+		"email": "E-mail address",
+		"password": "Password",
+		"emailVisibility": "E-mail visibility",
+		"phoneNr": "Phone nr"
+	},
+	"form": {
+		"confirmPassword": "Confirm password",
+		"logIn": "Log in",
+		"register": "Join Whatodo!",
+		"noAccYet": "I have no account yet",
+		"forgotPwdLinkPretext": "Forgot password?",
+		"forgotPwdLinkText": "Reset it!"
+	}
+}

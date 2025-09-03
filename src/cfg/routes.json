@@ -1,0 +1,34 @@
+{
+	"pages": {
+		"home": "/",
+		"logIn": "/log-in",
+		"register": "/register",
+		"exploreBoards": "/app/boards",
+		"boardCalendar": "/app/boards/%s/calendar",
+		"boardCollaborators": "/app/boards/%s/collaborators",
+		"createBoard": "/app/create-board",
+		"dashboard": "/app/dashboard",
+		"calendar": "/app/calendar",
+		"settings": "/app/settings",
+		"userBoards": "/app/users/%s/boards",
+		"userFriends": "/app/users/%s/friends",
+		"userCollaborations": "/app/users/%s/collaborations"
+	},
+	"requests": {
+		"getUser": "/users/%s"
+	},
+	"onlyLogin": [
+		"boardCalendar",
+		"boardCollaborators",
+		"createBoard",
+		"calendar",
+		"settings",
+		"userBoards",
+		"userFriends",
+		"userCollaborations"
+	],
+	"onlyLogout": ["login", "register"],
+	"afterLogin": "dashboard",
+	"unauthorizedFallback": "login",
+	"onlyLogoutFallback": "home"
+}

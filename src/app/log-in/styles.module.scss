@@ -1,0 +1,9 @@
+@use '@/styles/colors';
+@use '@/styles/variables';
+
+#wrapper {
+	display: grid;
+	place-items: center;
+
+	height: 100%;
+}
